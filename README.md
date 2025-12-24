@@ -2,7 +2,7 @@
 **Unauthorized TOR Browser Installation and Use**
 
 ## Executive Summary
-This project investigates the unauthorized installation and use of the Tor Browser on a Windows endpoint. Using Microsoft Defender for Endpoint advanced hunting telemetry, process execution, file system activity, and network connections were analyzed to identify a silent installation, Tor-related artifacts on disk, and outbound traffic consistent with Tor network usage. This investigation demonstrates how endpoint logs can be leveraged to detect anonymization tools and support security policy enforcement and incident response.
+Using Microsoft Defender for Endpoint advanced hunting telemetry, including process execution, file system activity, and network connections, this investigation identified a silent installation, Tor-related artifacts on disk, and outbound traffic consistent with Tor network usage. This investigation demonstrates how endpoint logs can be leveraged to detect anonymization tools and support security policy enforcement and incident response.
 
 
 ## Steps the "Bad Actor" Took (Log & IoC Generation)
@@ -14,8 +14,8 @@ This project investigates the unauthorized installation and use of the Tor Brows
    - Dark Markets Forum: ```g66ol3eb5ujdckzqqfmjsbpdjufmjd5nsgdipvxmsh7rckzlhywlzlqd.onion/d/DarkNetMarkets```
    - Current Elysium Market: ```https://elysiumutkwscnmdohj23gkcyp3ebrf4iio3sngc5tvcgyfp4nqqmwad.top/login```
    - ** It's possible the onion link for Dread Forum has changed, for latest links, you can try to check here: https://dread-forum.com/ **
-6. Create a folder on your desktop called ```tor-shopping-list.txt``` and put a few fake (illicit) items in there
-7. Delete the file.
+5. Create a folder on your desktop called ```tor-shopping-list.txt``` and put a few fake (illicit) items in there
+6.  Delete the file.
 
 ---
 
