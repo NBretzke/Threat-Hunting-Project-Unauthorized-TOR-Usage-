@@ -1,6 +1,10 @@
 # Threat Event (Unauthorized TOR Usage)
 **Unauthorized TOR Browser Installation and Use**
 
+## Executive Summary
+This project investigates the unauthorized installation and use of the Tor Browser on a Windows endpoint. Using Microsoft Defender for Endpoint advanced hunting telemetry, process execution, file system activity, and network connections were analyzed to identify a silent installation, Tor-related artifacts on disk, and outbound traffic consistent with Tor network usage. This investigation demonstrates how endpoint logs can be leveraged to detect anonymization tools and support security policy enforcement and incident response.
+
+
 ## Steps the "Bad Actor" Took (Log & IoC Generation)
 1. Download the TOR browser installer: https://www.torproject.org/download/
 2. Install it silently: ```tor-browser-windows-x86_64-portable-14.0.1.exe /S```
