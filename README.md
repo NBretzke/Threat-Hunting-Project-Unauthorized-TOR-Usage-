@@ -1,11 +1,11 @@
 # Threat Event (Unauthorized TOR Usage)
 **Unauthorized TOR Browser Installation and Use**
 
-## Steps the "Bad Actor" took Create Logs and IoCs:
+## Steps the "Bad Actor" Took (Log & IoC Generation)
 1. Download the TOR browser installer: https://www.torproject.org/download/
 2. Install it silently: ```tor-browser-windows-x86_64-portable-14.0.1.exe /S```
 3. Opens the TOR browser from the folder on the desktop
-4. Connect to TOR and browse a few sites.
+4. Connect to TOR and browse several onion sites (examples used for lab simulation):
    - Current Dread Forum: ```g66ol3eb5ujdckzqqfmjsbpdjufmjd5nsgdipvxmsh7rckzlhywlzlqd.onion```
    - Dark Markets Forum: ```g66ol3eb5ujdckzqqfmjsbpdjufmjd5nsgdipvxmsh7rckzlhywlzlqd.onion/d/DarkNetMarkets```
    - Current Elysium Market: ```https://elysiumutkwscnmdohj23gkcyp3ebrf4iio3sngc5tvcgyfp4nqqmwad.top/login```
@@ -51,7 +51,7 @@ DeviceProcessEvents
 // User shopping list was created and, changed, or deleted
 DeviceFileEvents
 | order by TimeGenerated desc 
-| where FileName has_any ("tor", "onion")
+| where FileName has "tor" or FolderPath has "Tor Browser"
 | project TimeGenerated, ActionType, DeviceName, FileName 
 
 // TOR Browser or service is being used and is actively creating network connections
@@ -62,6 +62,11 @@ DeviceNetworkEvents
 | project TimeGenerated, ActionType, DeviceName, RemoteIP, RemotePort, InitiatingProcessFileName
 | order by TimeGenerated desc
 ```
+## Defensive Interpretation
+- TOR Browser was installed silently without user interaction.
+- TOR binaries were executed from a non-standard, user-accessible directory.
+- Network connections consistent with TOR relay activity were observed.
+- File creation and deletion activity suggests potential preparation for illicit transactions.
 
 ---
 
