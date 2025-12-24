@@ -1,0 +1,77 @@
+# Official [Cyber Range](http://joshmadakor.tech/cyber-range) Project
+
+<img width="400" src="https://github.com/user-attachments/assets/44bac428-01bb-4fe9-9d85-96cba7698bee" alt="Tor Logo with the onion and a crosshair on it"/>
+
+# Threat Hunt Report: Unauthorized TOR Usage
+- [Scenario Creation](https://github.com/joshmadakor0/threat-hunting-scenario-tor/blob/main/threat-hunting-scenario-tor-event-creation.md)
+
+---
+
+## Platforms and Languages Leveraged
+- Windows 10 Virtual Machines (Microsoft Azure)
+- SIEM: Microsoft Sentinel
+- EDR Platform: Microsoft Defender for Endpoint
+- Kusto Query Language (KQL)
+- Tor Browser
+
+---
+
+## Scenario
+
+Management suspects that employees may be using TOR browsers to bypass network security controls after unusual encrypted traffic patterns and connections to known TOR entry nodes were observed. Anonymous reports also suggested employees were discussing methods to access restricted websites during work hours.
+
+The goal of this threat hunt was to detect any unauthorized TOR usage, analyze correlated endpoint and network activity, and take appropriate response actions if confirmed.
+
+---
+
+## High-Level TOR-Related IoC Discovery Plan
+
+- Identify TOR-related **file artifacts** on endpoints
+- Detect **process execution** associated with TOR installation and usage
+- Confirm **network connections** over known TOR ports
+- Correlate all findings into a single investigative dataset
+
+---
+
+## Detection & Investigation Methodology
+
+A single **correlated KQL query** was used to unify telemetry from:
+
+- `DeviceFileEvents`
+- `DeviceProcessEvents`
+- `DeviceNetworkEvents`
+
+This approach allowed TOR-related file activity, process execution, and network connections to be reviewed in one dataset (correlation-first investigation).
+
+Once the analytics rule triggered, the incident was assigned and investigated using the correlated results.
+
+---
+
+## Correlated Hunt Query (Union)
+
+> Update the `DeviceName`, time window, and any identifiers to match your environment.
+
+```kql
+union
+(
+    DeviceFileEvents
+    | where FileName has_any ("tor", "onion", "firefox")
+    | project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256,
+              Account = InitiatingProcessAccountName
+),
+(
+    DeviceProcessEvents
+    | where FileName has_any ("tor.exe", "firefox.exe", "tor-browser.exe")
+        or ProcessCommandLine has_any ("tor-browser-windows", "Tor Browser")
+    | project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256,
+              Account = AccountName, ProcessCommandLine
+),
+(
+    DeviceNetworkEvents
+    | where InitiatingProcessFileName has_any ("tor.exe", "firefox.exe")
+    | where RemotePort in (9001, 9030, 9040, 9050, 9051, 9150, 80, 443)
+    | project Timestamp, DeviceName, ActionType, RemoteIP, RemotePort, RemoteUrl,
+              Account = InitiatingProcessAccountName,
+              InitiatingProcessFileName, InitiatingProcessFolderPath
+)
+| order by Timestamp desc
