@@ -1,11 +1,8 @@
----
-
 # Tor Project
 
 # Threat Hunt Report: Unauthorized TOR Usage
 - [Scenario Creation](https://github.com/NBretzke/Threat-Hunting-Project-Unauthorized-TOR-Usage-/blob/main/ThreatHuntCreation)
 
----
 
 ## Platforms and Languages Leveraged
 - Windows 10 Virtual Machines (Microsoft Azure)
@@ -14,7 +11,7 @@
 - Kusto Query Language (KQL)
 - Tor Browser
 
----
+
 
 ## Scenario
 
@@ -22,7 +19,7 @@ Management suspects that employees may be using TOR browsers to bypass organizat
 
 The objective of this threat hunt was to detect any unauthorized TOR usage, analyze correlated endpoint and network activity, and take appropriate response actions if confirmed.
 
----
+
 
 ## High-Level TOR-Related IoC Discovery Plan
 
@@ -31,7 +28,7 @@ The objective of this threat hunt was to detect any unauthorized TOR usage, anal
 - Confirm **network connections** over known TOR ports
 - Correlate all findings into a single investigative dataset
 
----
+
 
 ## Detection & Investigation Methodology
 
