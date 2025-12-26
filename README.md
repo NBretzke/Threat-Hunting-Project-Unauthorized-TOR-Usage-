@@ -86,21 +86,21 @@ Process execution events within the correlated dataset confirmed that the TOR Br
 This confirmed that TOR was successfully installed on the endpoint threat-hunt-lab.
 - <img src="InitialDetection.png" width="1000">
 
-4. TOR Browser Execution Observed
+3. TOR Browser Execution Observed
 Subsequent process telemetry showed multiple executions of TOR-related processes, including firefox.exe (TOR) and tor.exe. These events confirmed that the TOR Browser was launched and actively used by the user.
 Repeated process creation events suggested continued interaction and possible troubleshooting during initial TOR usage.
 - <img src="Tor-Successfully-Launched.png" width="1000">
 
-6. TOR Network Activity Verified
+4. TOR Network Activity Verified
 Network telemetry within the same correlated dataset confirmed outbound connections over known TOR ports. A successful connection was established on port 9001, initiated by tor.exe, validating TOR network usage.
 Additional TOR-related connections were observed over ports 443 and 9150, indicating ongoing TOR browser activity.
 - <img src="Tor-Executed-Through-Firefox.png" width="1000">
 
-8. TOR-Related File Artifacts Identified
+5. TOR-Related File Artifacts Identified
 Review of correlated file events revealed that multiple TOR-related files were copied to the user’s desktop following installation. Additionally, a file named tor-shopping-list.txt was created on the desktop, suggesting user interaction after TOR browser usage.
 - <img src="Tor-Shopping-List-Detected.png" width="1000">
 
-10. Evidence Collection and Documentation
+6. Evidence Collection and Documentation
 Relevant evidence, including correlated logs, process execution details, network connections, and screenshots, was collected and reviewed. A chronological timeline was reconstructed to document the sequence of events, and findings were summarized to support incident response actions.
 
 ## Summary
