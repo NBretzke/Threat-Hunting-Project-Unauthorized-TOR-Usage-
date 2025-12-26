@@ -114,3 +114,6 @@ Additionally, TOR-related file artifacts were identified on the user’s desktop
 TOR usage was confirmed on the endpoint threat-hunt-lab associated with the user employee. The incident was reviewed and documented, including correlated process execution, file artifacts, and network activity. Evidence was preserved through log collection and screenshots, and a chronological timeline was reconstructed to support investigation findings.
 
 Based on the confirmed activity, the incident was escalated for further review in accordance with security policy, and appropriate stakeholders were notified.
+
+An additional report can be viewed here:
+[Threat Hunt Report](Report.pdf)
