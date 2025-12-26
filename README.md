@@ -102,3 +102,15 @@ Review of correlated file events revealed that multiple TOR-related files were c
 
 10. Evidence Collection and Documentation
 Relevant evidence, including correlated logs, process execution details, network connections, and screenshots, was collected and reviewed. A chronological timeline was reconstructed to document the sequence of events, and findings were summarized to support incident response actions.
+
+## Summary
+
+The user employee on the endpoint threat-hunt-lab initiated and completed the installation of the TOR Browser using a silent installation method. Correlated telemetry from device file, process, and network events confirmed the successful download, execution, and repeated use of TOR-related processes, including tor.exe and the TOR-modified firefox.exe. Network telemetry validated outbound connections over known TOR ports, confirming active participation in the TOR network.
+
+Additionally, TOR-related file artifacts were identified on the user’s desktop following installation, including the creation of a file named tor-shopping-list.txt, indicating post-installation user interaction and activity within the TOR Browser. This sequence of events demonstrates intentional installation and active usage of TOR for anonymous browsing purposes.
+
+## Response Taken
+
+TOR usage was confirmed on the endpoint threat-hunt-lab associated with the user employee. The incident was reviewed and documented, including correlated process execution, file artifacts, and network activity. Evidence was preserved through log collection and screenshots, and a chronological timeline was reconstructed to support investigation findings.
+
+Based on the confirmed activity, the incident was escalated for further review in accordance with security policy, and appropriate stakeholders were notified.
